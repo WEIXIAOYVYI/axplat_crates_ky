@@ -172,7 +172,6 @@ fn close_irq_and_restore_masking(){
 #[cfg(feature = "gicv2")]
 #[allow(unused_variables)]
 pub fn handle_irq(unused: usize, pmu_irq: usize) -> Option<usize> {
-    error("{:?}", unused);
     let ack = TRAP_OP.ack();
 
     if ack.is_special() {
@@ -189,6 +188,7 @@ pub fn handle_irq(unused: usize, pmu_irq: usize) -> Option<usize> {
 
     #[cfg(feature = "nmi-pmu")]
     if irq != pmu_irq{
+        axbacktrace::Backtrace::capture_from_fp(unused);
         open_high_priority_irq_mode();
     }
 
