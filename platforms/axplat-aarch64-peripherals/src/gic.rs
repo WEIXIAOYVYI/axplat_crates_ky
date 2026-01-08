@@ -185,9 +185,11 @@ pub fn handle_irq(unused: usize, pmu_irq: usize) -> Option<usize> {
 
     trace!("IRQ: {ack:?}");
 
+    if irq == pmu_irq{
+        error!("{}",axbacktrace::Backtrace::capture_from_fp(unused));
+    }
     #[cfg(feature = "nmi-pmu")]
     if irq != pmu_irq{
-        error!("{}",axbacktrace::Backtrace::capture_from_fp(unused));
         open_high_priority_irq_mode();
     }
 
