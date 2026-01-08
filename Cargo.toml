@@ -39,4 +39,4 @@ repository = "https://github.com/arceos-org/axplat_crates"
 axcpu = { version = "0.3.0", git = "https://github.com/arceos-org/axcpu.git", tag = "dev-v03" }
 axplat = { version = "0.3.0", path = "./axplat" }
 axplat-macros = { version = "0.1.0", path = "./axplat-macros" }
-axbacktrace = 0.1
+axbacktrace = "0.1"
