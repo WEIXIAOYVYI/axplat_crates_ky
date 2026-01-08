@@ -171,7 +171,8 @@ fn close_irq_and_restore_masking(){
 /// also acknowledges the interrupt controller after handling.
 #[cfg(feature = "gicv2")]
 #[allow(unused_variables)]
-pub fn handle_irq(_unused: usize, pmu_irq: usize) -> Option<usize> {
+pub fn handle_irq(unused: usize, pmu_irq: usize) -> Option<usize> {
+    error("{:?}", unused);
     let ack = TRAP_OP.ack();
 
     if ack.is_special() {
