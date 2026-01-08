@@ -173,7 +173,7 @@ fn close_irq_and_restore_masking(){
 #[allow(unused_variables)]
 pub fn handle_irq(unused: usize, pmu_irq: usize) -> Option<usize> {
     let ack = TRAP_OP.ack();
-
+    axbacktrace::Backtrace::capture_from_fp(unused);
     if ack.is_special() {
         return None;
     }
